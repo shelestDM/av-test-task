@@ -1,0 +1,49 @@
+
+<div class="data" *ngIf="data.key; else loading">
+    <div class="wrapper">
+        <div class="first-block">
+                <div class="fixed" >
+                    <h4 class="prod-name">
+                        Product Name
+                    </h4>
+                </div>
+                    <table class="table table-primary table-hover table-bordered text-center table-top">
+                            <tbody *ngFor="let item of data.dataList;">
+                                <tr >
+                                   <td (click)="onClick($event)" [abbr]="item.ProductId"> {{item.ProductDescription | productName}}</td>
+                                </tr>
+                            </tbody>
+                    </table>
+        </div>
+        <div class="second-block">
+            <div class="table-data" *ngIf="test; else space">
+                <table class="table table-hover">
+                        <thead>
+                            <tr class="table-danger">
+                                <th scope="col"> Product Data</th>
+                                <th scope="col"> </th>
+                            </tr>
+                        </thead>
+                    <tbody >
+                             <tr class="table-success" *ngFor="let title of objectTitleArray; let i=index" >
+                                <td>{{title}}</td>
+                                <td>{{data.dataList[index][title] | nullCheck}}  </td>
+                              </tr>
+                    </tbody>
+                </table>
+               <div class="btn-wrap">
+                     <button class="btn btn-primary" (click)="onClose()">Close</button>
+               </div>
+            </div>
+        </div>
+        <ng-template #space></ng-template>
+    </div>
+</div>
+
+
+            <ng-template #loading>
+                <div class="loading">
+                    <h3>Loading data...</h3>
+                    <div class="load-circle"></div>
+                </div>
+            </ng-template>
