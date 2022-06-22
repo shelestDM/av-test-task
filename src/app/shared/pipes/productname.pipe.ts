@@ -30,7 +30,6 @@ export class ProductName implements PipeTransform {
 
         return value.split(' ').splice(0, 3).join(' ');
         
-        /*  value.split(' ')[0] value.split(' ').splice(0, 3).join(' ') */
     }
 
 }

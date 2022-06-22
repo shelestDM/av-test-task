@@ -43,9 +43,6 @@ export class ShowdataComponent implements OnInit {
   onClick(i:number){
       this.index = i;
       this.onCloseKey = true; 
-
-      let arr = 'aa bb cc dd'
-      console.log(arr.split(' ').slice(0,1).join(' '))
   }
 
   onClose(){this.onCloseKey = null;}
