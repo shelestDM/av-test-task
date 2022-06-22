@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Product } from '../shared/interface';
 
 
 @Component({
@@ -9,9 +10,9 @@ import { DataService } from '../services/data.service';
 })
 export class ShowdataComponent implements OnInit {
 
-  test: any = null;
+  onCloseKey: any = null;
   index: any;
-  objectKey: any;
+  productData: Product[] = [];
   objectTitleArray: Array<any> = [
         "ProductId",
         "ColorIdx",
@@ -25,30 +26,28 @@ export class ShowdataComponent implements OnInit {
         "IsOrdergruppeC"
   ]
 
-  constructor(
-    public data: DataService
-  ) { }
+  constructor( public dataService: DataService ) { }
 
-  ngOnInit(): void {
-    this.data.onLoadData();
+  ngOnInit() {
+    this.fetchProductData();
+  }
+
+  fetchProductData(){
+    this.dataService.onLoadData()
+    .subscribe( productData=>{
+      this.productData = productData;
+    })
   }
 
 
+  onClick(i:number){
+      this.index = i;
+      this.onCloseKey = true; 
 
-  onClick(event: any){
-    this.test = event.target.abbr; /* innerHTML */
-    this.findData();
+      let arr = 'aa bb cc dd'
+      console.log(arr.split(' ').slice(0,1).join(' '))
   }
 
-  findData(){
-    this.index = this.data.dataList.findIndex((object)=>{
-      return object.ProductId == this.test;
-     })
-     this. objectKey = Object.keys(this.data.dataList[0])[0]
-  }
-
-  onClose(){
-    this.test = null;
-  }
+  onClose(){this.onCloseKey = null;}
 
 }
