@@ -10,21 +10,11 @@ import { Product } from '../shared/interface';
 })
 export class ShowdataComponent implements OnInit {
 
-  onCloseKey: any = null;
-  index: any;
+  onCloseKey: boolean = false;
+  index: number = 0;
   productData: Product[] = [];
-  objectTitleArray: Array<any> = [
-        "ProductId",
-        "ColorIdx",
-        "ProductCode",
-        "ProductDescription",
-        "Price",
-        "VoDatum",
-        "IsHeavy",
-        "RestrictedLands",
-        "IsFsk",
-        "IsOrdergruppeC"
-  ]
+  productKeys: Array<string> = [];
+
 
   constructor( public dataService: DataService ) { }
 
@@ -36,15 +26,16 @@ export class ShowdataComponent implements OnInit {
     this.dataService.onLoadData()
     .subscribe( productData=>{
       this.productData = productData;
+      this.productKeys = Object.keys(this.productData[0]);
     })
   }
 
-
+  
   onClick(i:number){
       this.index = i;
       this.onCloseKey = true; 
   }
 
-  onClose(){this.onCloseKey = null;}
+  onClose(){this.onCloseKey = false;}
 
 }

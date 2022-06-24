@@ -25,9 +25,9 @@
                             </tr>
                         </thead>
                     <tbody >
-                             <tr class="table-success" *ngFor="let title of objectTitleArray;" >
-                                <td>{{title}}</td>
-                                <td>{{productData[index][title] | nullCheck}}  </td>
+                             <tr class="table-success" *ngFor="let key of productKeys;" >
+                                <td>{{key}}</td>
+                                <td>{{productData[index][key] | nullCheck}}  </td>
                               </tr>
                     </tbody>
                 </table>
